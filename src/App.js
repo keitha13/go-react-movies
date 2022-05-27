@@ -1,6 +1,13 @@
+import React, { Component, Fragment } from "react";
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Movies from './components/Movies';
+import Admin from './components/Admin';
+import Home from './components/Home';
 
-function App() {
+
+export default function App() {
   return (
+    <Router>
     <div className='container'>
       <div className='row'>
         <h1 className='mt-3'>
@@ -13,23 +20,32 @@ function App() {
           <nav>
             <ul className='list-group'>
               <li className='list-group-item'>
-                <a href='/'>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className='list-group-item'>
-                <a href='/movies'>Movies</a>
+                <Link to="/movies">Movies</Link>
               </li>
               <li className='list-group-item'>
-                <a href='/admin'>Manage Catalogue</a>
+                <Link to="/admin">Manage Catalogue</Link>
               </li>
             </ul>
           </nav>
         </div>
         <div className='col-md-10'>
-
+          <Switch>
+            <Route path="/movies">
+              <Movies />
+            </Route>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
         </div>
       </div>
     </div>
+    </Router>
   );
 }
-
-export default App;
